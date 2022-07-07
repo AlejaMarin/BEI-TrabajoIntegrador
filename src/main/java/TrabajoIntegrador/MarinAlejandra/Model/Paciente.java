@@ -1,22 +1,21 @@
 package TrabajoIntegrador.MarinAlejandra.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
-//@Entity
+@Entity
 public class Paciente {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String nombre;
     private String apellido;
-    private Domicilio domicilio;
     private Integer dni;
     private LocalDate fechaAlta;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "domicilio_id")
+    private Domicilio domicilio;
 
     public Paciente() {
     }
