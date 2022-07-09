@@ -1,18 +1,22 @@
 package TrabajoIntegrador.MarinAlejandra.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
-//@Entity
+@Entity
+@Table(name = "Turnos")
 public class Turno {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Id
+    @SequenceGenerator(name = "turno_sequence", sequenceName = "turno_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "turno_sequence")
     private Long id;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "paciente_id")
     private Paciente paciente;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "odontologo_id")
     private Odontologo odontologo;
     private LocalDateTime fechaHora;
 

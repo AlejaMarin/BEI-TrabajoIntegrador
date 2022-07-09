@@ -21,8 +21,14 @@ public class OdontologoController {
     }
 
     @GetMapping
+    @ResponseBody
     public ResponseEntity<List<Odontologo>> listarOdontologos() {
         return ResponseEntity.ok(odontologoService.listarOdontologos());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Odontologo> buscarOdontologo(@PathVariable Long id) {
+        return ResponseEntity.ok(odontologoService.buscar(id));
     }
 
     @PostMapping("/guardar")

@@ -21,8 +21,14 @@ public class PacienteController {
     }
 
     @GetMapping
+    @ResponseBody
     public ResponseEntity<List<Paciente>> listarPacientes() {
         return ResponseEntity.ok(pacienteService.listarPacientes());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Paciente> buscarPaciente(@PathVariable Long id) {
+        return ResponseEntity.ok(pacienteService.buscar(id));
     }
 
     @PostMapping("/guardar")
