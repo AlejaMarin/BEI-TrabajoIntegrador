@@ -1,5 +1,6 @@
 package TrabajoIntegrador.MarinAlejandra.Controller;
 
+import TrabajoIntegrador.MarinAlejandra.Exceptions.BadRequestException;
 import TrabajoIntegrador.MarinAlejandra.Model.Odontologo;
 import TrabajoIntegrador.MarinAlejandra.Service.OdontologoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class OdontologoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Odontologo> buscarOdontologo(@PathVariable Long id) {
+    public ResponseEntity<Odontologo> buscarOdontologo(@PathVariable Long id) throws BadRequestException {
         return ResponseEntity.ok(odontologoService.buscar(id));
     }
 
@@ -37,12 +38,12 @@ public class OdontologoController {
     }
 
     @PutMapping("/modificar")
-    public ResponseEntity<Odontologo> modificarOdontologo(@RequestBody Odontologo odontologo) {
+    public ResponseEntity<Odontologo> modificarOdontologo(@RequestBody Odontologo odontologo) throws BadRequestException {
         return ResponseEntity.ok(odontologoService.modificar(odontologo));
     }
 
     @DeleteMapping("eliminar/{id}")
-    public ResponseEntity<String> eliminarOdontologo(@PathVariable Long id) {
+    public ResponseEntity<String> eliminarOdontologo(@PathVariable Long id) throws BadRequestException {
         odontologoService.eliminar(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Odontologo eliminado correctamente");
     }

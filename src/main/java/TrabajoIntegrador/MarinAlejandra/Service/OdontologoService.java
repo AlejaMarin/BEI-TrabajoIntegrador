@@ -1,12 +1,15 @@
 package TrabajoIntegrador.MarinAlejandra.Service;
 
+import TrabajoIntegrador.MarinAlejandra.Exceptions.BadRequestException;
 import TrabajoIntegrador.MarinAlejandra.Model.Odontologo;
 import TrabajoIntegrador.MarinAlejandra.Repository.OdontologoRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OdontologoService {
@@ -15,13 +18,21 @@ public class OdontologoService {
     private OdontologoRepository odontologoRepository;
 
     @Autowired
+    ObjectMapper mapper;
+
+    @Autowired
     public OdontologoService(OdontologoRepository odontologoRepository) {
         this.odontologoRepository = odontologoRepository;
     }
 
-    public Odontologo buscar(Long id) {
-        logger.debug("Buscando odontologo con id" + id);
-        return odontologoRepository.findById(id).orElseThrow(null);
+    public Odontologo buscar(Long id) throws BadRequestException {
+        logger.debug("Buscando odontologo con id: " + id);
+        Optional<Odontologo> encontrado = odontologoRepository.findById(id);
+        if (encontrado.isPresent()) {
+            return mapper.convertValue(encontrado, Odontologo.class);
+        } else {
+            throw new BadRequestException("Odontologo con id: " + id + ", no existe");
+        }
     }
 
     public Odontologo guardar(Odontologo odontologo) {
@@ -29,7 +40,7 @@ public class OdontologoService {
         return odontologoRepository.save(odontologo);
     }
 
-    public Odontologo modificar(Odontologo odontologo) {
+    public Odontologo modificar(Odontologo odontologo) throws BadRequestException {
         Odontologo odontologoUpdate = buscar(odontologo.getId());
         if (odontologoUpdate != null) {
             logger.debug("Modificando odontologo con id: " + odontologo.getId());
@@ -41,7 +52,7 @@ public class OdontologoService {
         return odontologoUpdate;
     }
 
-    public void eliminar(Long id) {
+    public void eliminar(Long id) throws BadRequestException {
         Odontologo odontologoDelete = buscar(id);
         if (odontologoDelete != null) {
             logger.debug("Eliminando odontologo con id: " + id);
