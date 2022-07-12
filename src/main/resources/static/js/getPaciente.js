@@ -7,9 +7,9 @@ window.addEventListener('load', function () {
 
         event.preventDefault();
 
-        const idOdontologo = document.querySelector('#id').value;
+        const idPaciente = document.querySelector('#id').value;
 
-        const url = '/odontologos/' + idOdontologo;
+        const url = '/pacientes/' + idPaciente;
         const settings = {
             method: 'GET'
         };
@@ -22,7 +22,13 @@ window.addEventListener('load', function () {
                 <div>
                 <p>${data.nombre}</p>
                 <p>${data.apellido}</p>
-                <p>${data.matricula}</p>
+                <p>${data.dni}</p>
+                <p>${data.fechaAlta}</p>
+                <p>Domicilio:</p>
+                <p>${data.domicilio.calle}</p>
+                <p>${data.domicilio.numero}</p>
+                <p>${data.domicilio.localidad}</p>
+                <p>${data.domicilio.provincia}</p>
                 </div>
                 `
             })
@@ -34,8 +40,6 @@ window.addEventListener('load', function () {
     });
 
     function resetForm() {
-        document.querySelector('#nombre').value = "";
-        document.querySelector('#apellido').value = "";
-        document.querySelector('#matricula').value = "";
+        document.querySelector('#id').value = "";
     }
 })

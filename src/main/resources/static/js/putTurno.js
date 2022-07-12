@@ -6,38 +6,43 @@ window.addEventListener('load', function () {
 
         event.preventDefault();
 
-        const datosOdontologo = {
+        const datosTurno = {
             id: document.querySelector('#id').value,
-            nombre: document.querySelector('#nombre').value,
-            apellido: document.querySelector('#apellido').value,
-            matricula: document.querySelector('#matricula').value,
+            paciente: {
+                id: document.querySelector('#idPaciente').value
+            },
+            odontologo: {
+                id: document.querySelector('#idOdontologo').value
+            },
+            fechaHora: document.querySelector('#fechaHora').value
         };
 
-        const url = '/odontologos/modificar';
+        const url = '/turnos/modificar';
         const settings = {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(datosOdontologo)
+            body: JSON.stringify(datosTurno)
         };
 
         fetch(url, settings)
             .then(response => response.json())
             .then(data => {
-                alert("Odontologo modificado correctamente");
+                alert("Turno modificado correctamente");
                 console.log(data);
                 resetForm();
             })
             .catch(error => {
-                alert("No se pudo agregar el odontológo");
+                alert("No se pudo modificar el turno");
                 resetForm();
             })
     });
 
     function resetForm() {
-        document.querySelector('#nombre').value = "";
-        document.querySelector('#apellido').value = "";
-        document.querySelector('#matricula').value = "";
+        document.querySelector('#id').value = "";
+        document.querySelector('#idPaciente').value = "";
+        document.querySelector('#idOdontologo').value = "";
+        document.querySelector('#fechaHora').value = "";
     }
 })

@@ -30,12 +30,13 @@ window.addEventListener('load', function () {
                 resetForm();
             })
             .catch(error => {
-                alert("No se pudo agregar el odontológo");
+                alert("No se pudo modificar el odontológo");
                 resetForm();
             })
     });
 
     function resetForm() {
+        document.querySelector('#id').value = "";
         document.querySelector('#nombre').value = "";
         document.querySelector('#apellido').value = "";
         document.querySelector('#matricula').value = "";

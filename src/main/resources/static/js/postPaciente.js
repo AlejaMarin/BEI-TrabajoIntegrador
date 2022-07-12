@@ -6,30 +6,37 @@ window.addEventListener('load', function () {
 
         event.preventDefault();
 
-        const datosNuevoOdontologo = {
+        const datosNuevoPaciente = {
             nombre: document.querySelector('#nombre').value,
             apellido: document.querySelector('#apellido').value,
-            matricula: document.querySelector('#matricula').value,
+            dni: document.querySelector('#dni').value,
+            fechaAlta: document.querySelector('#fechaIngreso').value,
+            domicilio: {
+                calle: document.querySelector('#calle').value,
+                numero: document.querySelector('#numero').value,
+                localidad: document.querySelector('#localidad').value,
+                provincia: document.querySelector('#provincia').value
+            }
         };
 
-        const url = '/odontologos/guardar';
+        const url = '/pacientes/guardar';
         const settings = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(datosNuevoOdontologo)
+            body: JSON.stringify(datosNuevoPaciente)
         };
 
         fetch(url, settings)
             .then(response => response.json())
             .then(data => {
-                alert("Odontologo agregado correctamente");
+                alert("Paciente agregado correctamente");
                 console.log(data);
                 resetForm();
             })
             .catch(error => {
-                alert("No se pudo agregar el odontológo");
+                alert("No se pudo agregar el paciente");
                 resetForm();
             })
     });
@@ -37,6 +44,11 @@ window.addEventListener('load', function () {
     function resetForm() {
         document.querySelector('#nombre').value = "";
         document.querySelector('#apellido').value = "";
-        document.querySelector('#matricula').value = "";
+        document.querySelector('#dni').value = "";
+        document.querySelector('#fechaIngreso').value = "";
+        document.querySelector('#calle').value = "";
+        document.querySelector('#numero').value = "";
+        document.querySelector('#localidad').value = "";
+        document.querySelector('#provincia').value = "";
     }
 })

@@ -6,9 +6,9 @@ window.addEventListener('load', function () {
 
         event.preventDefault();
 
-        const idOdontologo = document.querySelector('#id').value;
+        const idTurno = document.querySelector('#id').value;
 
-        const url = '/odontologos/eliminar/' + idOdontologo;
+        const url = '/turnos/eliminar/' + idTurno;
         const settings = {
             method: 'DELETE'
         };
@@ -16,7 +16,7 @@ window.addEventListener('load', function () {
         fetch(url, settings)
             .then()
             .then(() => {
-                alert("Odontologo eliminado correctamente");
+                alert("Turno eliminado correctamente");
                 resetForm();
             })
             .catch(error => {

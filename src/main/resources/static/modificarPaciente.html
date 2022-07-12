@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Odontológos - Modificar</title>
+    <title>Pacientes - Modificar</title>
 </head>
 
 <body>
@@ -15,7 +15,7 @@
     <main>
         <form id="update">
             <label for="id">ID:</label>
-            <input type="text" name="id" id="id" required>
+            <input type="number" name="id" id="id" required>
             <br>
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" id="nombre" required>
@@ -26,11 +26,33 @@
             <label for="matricula">Matricula:</label>
             <input type="text" name="matricula" id="matricula" required>
             <br>
+            <label for="dni">DNI:</label>
+            <input type="number" name="dni" id="dni" required>
+            <br>
+            <label for="fechaIngreso">Fecha de Ingreso:</label>
+            <input type="date" name="fechaIngreso" id="fechaIngreso" required>
+            <br>
+            <p>Domicilio:</p>
+            <label for="idDomicilio">ID:</label>
+            <input type="number" name="idDomicilio" id="idDomicilio" required>
+            <br>
+            <label for="calle">Calle:</label>
+            <input type="text" name="calle" id="calle" required>
+            <br>
+            <label for="numero">Número:</label>
+            <input type="text" name="numero" id="numero" required>
+            <br>
+            <label for="localidad">Localidad:</label>
+            <input type="text" name="localidad" id="localidad" required>
+            <br>
+            <label for="provincia">Provincia:</label>
+            <input type="text" name="provincia" id="provincia" required>
+            <br>
             <button type="submit">Modificar</button>
         </form>
     </main>
     <footer></footer>
-    <script src="/js/putOdontologo.js"></script>
+    <script src="/js/putPaciente.js"></script>
 </body>
 
 </html>

@@ -7,9 +7,9 @@ window.addEventListener('load', function () {
 
         event.preventDefault();
 
-        const idOdontologo = document.querySelector('#id').value;
+        const idTurno = document.querySelector('#id').value;
 
-        const url = '/odontologos/' + idOdontologo;
+        const url = '/turnos/' + idTurno;
         const settings = {
             method: 'GET'
         };
@@ -20,9 +20,21 @@ window.addEventListener('load', function () {
                 console.log(data);
                 respuesta.innerHTML = `
                 <div>
-                <p>${data.nombre}</p>
-                <p>${data.apellido}</p>
-                <p>${data.matricula}</p>
+                <p>Paciente:<p>
+                <p>${data.paciente.nombre}</p>
+                <p>${data.paciente.apellido}</p>
+                <p>${data.paciente.dni}</p>
+                <p>${data.paciente.fechaAlta}</p>
+                <p>Domicilio:</p>
+                <p>${data.paciente.domicilio.calle}</p>
+                <p>${data.paciente.domicilio.numero}</p>
+                <p>${data.paciente.domicilio.localidad}</p>
+                <p>${data.paciente.domicilio.provincia}</p>
+                <p>Odontológo:<p>
+                <p>${data.odontologo.nombre}</p>
+                <p>${data.odontologo.apellido}</p>
+                <p>${data.odontologo.matricula}</p>
+                <p>Fecha y Hora: ${data.fechaHora}</p>
                 </div>
                 `
             })
@@ -34,8 +46,6 @@ window.addEventListener('load', function () {
     });
 
     function resetForm() {
-        document.querySelector('#nombre').value = "";
-        document.querySelector('#apellido').value = "";
-        document.querySelector('#matricula').value = "";
+        document.querySelector('#id').value = "";
     }
 })

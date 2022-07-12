@@ -34,8 +34,6 @@ window.addEventListener('load', function () {
     });
 
     function resetForm() {
-        document.querySelector('#nombre').value = "";
-        document.querySelector('#apellido').value = "";
-        document.querySelector('#matricula').value = "";
+        document.querySelector('#id').value = "";
     }
 })

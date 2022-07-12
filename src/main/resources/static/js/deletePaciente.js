@@ -6,9 +6,9 @@ window.addEventListener('load', function () {
 
         event.preventDefault();
 
-        const idOdontologo = document.querySelector('#id').value;
+        const idPaciente = document.querySelector('#id').value;
 
-        const url = '/odontologos/eliminar/' + idOdontologo;
+        const url = '/pacientes/eliminar/' + idPaciente;
         const settings = {
             method: 'DELETE'
         };
@@ -16,7 +16,7 @@ window.addEventListener('load', function () {
         fetch(url, settings)
             .then()
             .then(() => {
-                alert("Odontologo eliminado correctamente");
+                alert("Paciente eliminado correctamente");
                 resetForm();
             })
             .catch(error => {
